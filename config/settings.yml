@@ -1,0 +1,251 @@
+# URL for sending request & receiving responses
+site_url: api-dev.int.tfoundry.com
+# Port for site_url
+port: 8443
+# URL for invoking KMS API calls
+kms_site_url: km.paloalto-hp.int.foundry-dev.tfoundry.com
+# Port for kms_site_url
+kms_port: 80
+# Authentication username/pwd for the KMS
+kms_auth_user: apigee
+kms_auth_password: apigee123
+# Login app URL and port for http redirection during on network
+login_app_url: localhost
+login_app_port: 3000
+login:
+  session_details:  /user/getsessiondetails
+  session_details_mc:  /user/getsessiondetailsmc
+  login_url:  /user/login
+  captcha_url:  /registration/getcaptcha
+  password_url:  /registration/register
+  resend_mobile_pin:  /registration/sendvalidationpin
+  resend_email_pin:  /registration/sendvalidationemail
+  reg_validate_pin:  /registration/validatepin
+  validate_email:  /registration/validateemail
+  validate_number:  /registration/subscriberstatus
+  change_password:  /user/changepassword
+  reset_password:  /registration/resetpassword
+  get_terms_and_conditions: /registration/termsnconditions
+  send_pin: /user/sendpin
+  resend_pin: /user/resendpin
+  validate_pin: /user/validatepin
+  on_network_auth: /user/onnetworkauth
+  on_network_auth_mc: /user/onnetworkauthmc
+application:
+  manage_consent:  /user/manageconsent
+  issue_consent:  /user/issueconsent
+  cancel_consent:  /user/authorization/cancel
+  redirect_url:  /user/authorization/create
+  applications:  /user/authorize/list
+  single_application: /user/authorize/list
+  revoke_consent: /user/authorize/revoke
+payment:
+  login_url: /user/payments
+  payment_details: /user/getpaymentdetails
+  payment_consent: /user/issuepaymentconsent
+  payment_network: /user/onnetworkpayment
+  cancel_payment: /user/payment/cancel
+kms:
+  key_validate: /consumer/clientapp/key/validate
+  developer_name: /consumer/attributes
+mail_settings:
+  from_address: 
+  to_address: 
+  subject: 
+  content: 
+
+##
+# Override environments.  These map to Rails.env.
+
+test_san1:
+  site_url: api-test.int.san1.attcompute.com
+  kms_site_url: km-test.int.san1.attcompute.com
+  login_app_url: auth-test.san1.attcompute.com
+  kms_port: 8080
+  login_app_port: 80
+  forgot_id: https://myatt-qa1.stage.att.com/olam/enterEmailForgotId.myworld
+  forgot_pwd: https://myatt-qa1.stage.att.com/olam/enterUserIdSlidFpwd.myworld
+  set_log_level: debug
+  outboundsmarthost: 
+
+perf_san1:
+  site_url: api-perf.int.san1.attcompute.com
+  kms_site_url: km-perf.int.san1.attcompute.com
+  login_app_url: auth-perf.san1.attcompute.com
+  kms_port: 8080
+  login_app_port: 80
+  forgot_id: https://myatt-qa1.stage.att.com/olam/enterEmailForgotId.myworld
+  forgot_pwd: https://myatt-qa1.stage.att.com/olam/enterUserIdSlidFpwd.myworld
+  set_log_level: debug
+  outboundsmarthost: 
+
+dev-perf_san1:
+  site_url: api-dev-perf.int.san1.attcompute.com
+  kms_site_url: km-dev-perf.int.san1.attcompute.com
+  login_app_url: auth-dev-perf.san1.attcompute.com
+  kms_port: 8080
+  login_app_port: 80
+  forgot_id: https://myatt-qa1.stage.att.com/olam/enterEmailForgotId.myworld
+  forgot_pwd: https://myatt-qa1.stage.att.com/olam/enterUserIdSlidFpwd.myworld
+  set_log_level: debug
+  outboundsmarthost: 
+
+prod_san1:
+  site_url: api-prod.int.san1.attcompute.com
+  kms_site_url: km-prod.int.san1.attcompute.com
+  login_app_url: auth-api.att.com
+  kms_port: 8080
+  login_app_port: 80
+  forgot_id: https://www.att.com/olam/enterEmailForgotId.myworld
+  forgot_pwd: https://www.att.com/olam/enterUserIdSlidFpwd.myworld
+  set_log_level: info
+  outboundsmarthost: 
+
+uat_san1:
+  site_url: api-uat.int.san1.attcompute.com
+  kms_site_url: km-uat.int.san1.attcompute.com
+  login_app_url: auth-uat.san1.attcompute.com
+  kms_port: 8080
+  login_app_port: 80
+  forgot_id: https://www.att.com/olam/enterEmailForgotId.myworld
+  forgot_pwd: https://www.att.com/olam/enterUserIdSlidFpwd.myworld
+  set_log_level: info
+  outboundsmarthost: 
+
+dev_san1:
+  site_url: api-dev.int.san1.attcompute.com
+  kms_site_url: km-dev.int.san1.attcompute.com
+  login_app_url: auth-dev.san1.attcompute.com
+  kms_port: 8080
+  login_app_port: 80
+  forgot_id: https://myatt-qa1.stage.att.com/olam/enterEmailForgotId.myworld
+  forgot_pwd: https://myatt-qa1.stage.att.com/olam/enterUserIdSlidFpwd.myworld
+  set_log_level: debug
+  outboundsmarthost: 
+
+blackflag-dev_san2:
+  site_url: api-dev.int.san2.attcompute.com
+  kms_site_url: km-dev.int.san2.attcompute.com
+  login_app_url: auth-dev.san2.attcompute.com
+  kms_port: 8080
+  login_app_port: 80
+  forgot_id: https://myatt-qa1.stage.att.com/olam/enterEmailForgotId.myworld
+  forgot_pwd: https://myatt-qa1.stage.att.com/olam/enterUserIdSlidFpwd.myworld
+  set_log_level: debug
+  outboundsmarthost: 
+
+blackflag-dev-test_san2:
+  site_url: api-dev-test.int.san2.attcompute.com
+  kms_site_url: km-dev-test.int.san2.attcompute.com
+  login_app_url: auth-dev-test.san2.attcompute.com
+  kms_port: 8080
+  login_app_port: 80
+  forgot_id: https://myatt-qa1.stage.att.com/olam/enterEmailForgotId.myworld
+  forgot_pwd: https://myatt-qa1.stage.att.com/olam/enterUserIdSlidFpwd.myworld
+  set_log_level: debug
+  outboundsmarthost: 
+
+blackflag-test_san2:
+  site_url: api-test.int.san2.attcompute.com
+  kms_site_url: km-test.int.san2.attcompute.com
+  login_app_url: auth-test.san2.attcompute.com
+  kms_port: 8080
+  login_app_port: 80
+  forgot_id: https://myatt-qa1.stage.att.com/olam/enterEmailForgotId.myworld
+  forgot_pwd: https://myatt-qa1.stage.att.com/olam/enterUserIdSlidFpwd.myworld
+  set_log_level: info
+  outboundsmarthost: 
+
+blackflag-perf_san2:
+  site_url: api-perf.int.san2.attcompute.com
+  kms_site_url: km-perf.int.san2.attcompute.com
+  login_app_url: auth-perf.san2.attcompute.com
+  kms_port: 8080
+  login_app_port: 80
+  forgot_id: https://myatt-qa1.stage.att.com/olam/enterEmailForgotId.myworld
+  forgot_pwd: https://myatt-qa1.stage.att.com/olam/enterUserIdSlidFpwd.myworld
+  set_log_level: debug
+  outboundsmarthost: 
+
+blackflag-uat_san2:
+  site_url: api-uat.int.san2.attcompute.com
+  kms_site_url: km-uat.int.san2.attcompute.com
+  login_app_url: auth-uat.san2.attcompute.com
+  kms_port: 8080
+  login_app_port: 80
+  forgot_id: https://www.att.com/olam/enterEmailForgotId.myworld
+  forgot_pwd: https://www.att.com/olam/enterUserIdSlidFpwd.myworld
+  set_log_level: info
+  outboundsmarthost: 
+
+prod_dfw1:
+  site_url: api-prod.int.dfw1.attcompute.com
+  kms_site_url: km-prod.int.dfw1.attcompute.com
+  login_app_url: auth-api.att.com
+  kms_port: 8080
+  login_app_port: 80
+  forgot_id: https://www.att.com/olam/enterEmailForgotId.myworld
+  forgot_pwd: https://www.att.com/olam/enterUserIdSlidFpwd.myworld
+  set_log_level: info
+  outboundsmarthost: 
+
+blackflag-prod_ewr1:
+  site_url: api-prod.bf.priv.ewr1.attcompute.com
+  kms_site_url: km-prod.priv.bf.ewr1.attcompute.com
+  login_app_url: auth-api.att.com
+  kms_port: 8080
+  login_app_port: 80
+  forgot_id: https://www.att.com/olam/enterEmailForgotId.myworld
+  forgot_pwd: https://www.att.com/olam/enterUserIdSlidFpwd.myworld
+  set_log_level: info
+  outboundsmarthost: 
+
+blackflag-uat_ewr1:
+  site_url: api-uat.priv.bf.pacer.sl.attcompute.com
+  kms_site_url: km-uat.priv.bf.pacer.sl.attcompute.com
+  login_app_url: auth-uat.bf.pacer.sl.attcompute.com
+  kms_port: 8080
+  login_app_port: 80
+  forgot_id: https://www.att.com/olam/enterEmailForgotId.myworld
+  forgot_pwd: https://www.att.com/olam/enterUserIdSlidFpwd.myworld
+  set_log_level: info
+  outboundsmarthost: 
+
+
+blackflag-dev_ewr1:
+  site_url: api-dev.priv.bf.pacer.sl.attcompute.com
+  kms_site_url: km-dev.priv.bf.pacer.sl.attcompute.com
+  login_app_url: auth-dev.bf.pacer.sl.attcompute.com
+  kms_port: 8080
+  login_app_port: 80
+  forgot_id: https://www.att.com/olam/enterEmailForgotId.myworld
+  forgot_pwd: https://www.att.com/olam/enterUserIdSlidFpwd.myworld
+  set_log_level: info
+  outboundsmarthost:
+
+
+blackflag-dev-test_ewr1:
+  site_url: api-dev-test.priv.bf.pacer.sl.attcompute.com
+  kms_site_url: km-dev-test.priv.bf.pacer.sl.attcompute.com
+  login_app_url: auth-dev-test.bf.pacer.sl.attcompute.com
+  kms_port: 8080
+  login_app_port: 80
+  forgot_id: https://www.att.com/olam/enterEmailForgotId.myworld
+  forgot_pwd: https://www.att.com/olam/enterUserIdSlidFpwd.myworld
+  set_log_level: info
+  outboundsmarthost: 
+
+
+  
+apifoundry-dev:
+  site_url: int.apifoundry-dev.pao1.tfoundry.com
+  kms_site_url: kms.int.apifoundry-dev.pao1.tfoundry.com
+  login_app_url: auth.int.apifoundry-dev.pao1.tfoundry.com
+  kms_port: 8080
+  login_app_port: 8080
+  forgot_id: https://myatt-qa1.stage.att.com/olam/enterEmailForgotId.myworld
+  forgot_pwd: https://myatt-qa1.stage.att.com/olam/enterUserIdSlidFpwd.myworld
+  set_log_level: debug
+  outboundsmarthost: 
+
+

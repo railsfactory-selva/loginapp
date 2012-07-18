@@ -1,0 +1,94 @@
+<script type="text/javascript">
+
+function hideExistingUsers() {
+    document.getElementById('existing_users').style.display = 'none';
+    document.getElementById('new_users').style.display = 'block';
+}
+
+function hideNewUsers() {
+    document.getElementById('new_users').style.display = 'none';
+    document.getElementById('existing_users').style.display = 'block';
+    already_loaded = true;
+}
+
+</script>
+<div id="spinner" style="display:none;margin-left:0px;margin-top:-168px;"></div>
+<% form_for :login,:url=>{:controller=>"manage_profiles",:action=>"login_create", :protocol => 'https', :only_path => false}, :html => {:id => "login" }  do|f| %>
+<% @captcha_id && !@captcha_id.blank? ? captcha=true : captcha=false %>
+	<h3 style="text-align:center;font-size:17px;"><a href="#" onclick="hideNewUsers()">Existing Users</a> <span class="vert" style="color:#e0e0e0;font-weight:normal;padding:0 10px;">|</span> <a href="#" onclick="showNewUsers(<%=h captcha %>)">New Users</a></h3>
+	<!-- Begin Existing Users Form -->
+  <div id="existing_users">
+    <!--begin email address-->
+    <div class="clearfix">
+      <!--<div class="img-container alignleft">
+        <label for="email"><img src="/images/att_fi_email_rgb_grd.png" alt="" height="50"></label>
+      </div>-->
+      <div class="fields-container">
+				<label for="email">AT&amp;T ID  <span class="vert">/</span> Email <small><a href="<%= DEFAULT_CONFIG['forgot_id']%>" target="_blank">Forgot AT&amp;T ID?</a></small></label>
+        <div class="input-c">
+          <%= f.text_field :username, :style => "width:258px;" %>
+        </div>
+			</div>
+		</div>
+    <!--end email address-->
+    <!-- begin password -->
+    <div class="clearfix">
+      <!--<div class="img-container alignleft">
+        <label for="password"><img src="/images/att_fi_secmgr_rgb_grd.png" alt="" height="50"></label>
+      </div>-->
+      <div class="fields-container">
+        <label for="password">Password <small><a href="<%= DEFAULT_CONFIG['forgot_pwd']%>" target="_blank">Forgot Password?</a></small></label>
+        <div class="input-c">
+          <%= f.password_field :password, :onkeypress=>"return runScript(event)", :style => "width:258px;" %>
+        </div>
+      </div>
+    </div>
+    <!-- end password -->
+		
+	
+		<p style="text-align:center; color:green;"><%= flash[:success] %></p>
+		<p style="text-align:center; color:red;" id="net_error_id"><%= flash[:error] %></p>
+		<p style="text-align:center;">I accept the <a href="javascript:terms_and_conditions('<%= h @tc_content %>');">Terms</a> & <a href="#" onclick="javascript:privacypolicy('/Privacypolicy.html')">Privacy Policy</a>.</p>
+		<%= f.hidden_field :redirect_url %>
+		<%= f.hidden_field :client_id, :value => "#{params[:client_id].to_s}" %>
+		<%= f.hidden_field :scope, :value => "#{params[:scope].to_s}" %>
+		<%= f.hidden_field :redirectUrl, :value => "#{params[:redirect_url].to_s}" %>
+    <!--begin SIGNIN/Manage Profile Buttons -->
+    <div class="button-group">
+			<p>
+			<% if params[:login] && params[:login] == "mc" %>
+			<a class="button ok" href="javascript:submit_manage_consent();" style="width:80%;">Access Manage Consent</a>
+			<% else %>
+				<a class="button ok" href="javascript:submit_login();"  style="width:45%;">Allow</a>
+				<a class="button ok" href="javascript:submit_consent_decline();"  style="width:45%;">Decline</a>
+	<%		 end %>
+      </p>
+    </div>
+    <!--end SIGNIN/Manage Profile Buttons -->
+	</div>
+  <!-- End Existing Users Form -->
+	<% end %>
+	  <div id="new_user">
+	<% if (flash[:reg_error] && !flash[:reg_error].blank?) || (params[:mc_registration] && params[:mc_registration] == "true") %>
+			<%= render :partial => 'new_user' %>
+		<% end %>
+		</div>
+<script type="text/javascript">
+    window.onload = checkCookiesEnabledOrNotAndDisplayErrorMessage('net_error_id');
+</script>
+<script>
+<% if (flash[:reg_error] && !flash[:reg_error].blank?) || (params[:mc_registration] && params[:mc_registration] == "true") %>
+		hideExistingUsers();
+<% end %>
+function runScript(e) {
+    if (e.keyCode == 13) {
+    <% if params[:login] && params[:login] != "mc" %>
+			submit_login();
+			<% end %>
+      return false;
+    }
+		else {
+			return true;
+		}
+}
+</script>

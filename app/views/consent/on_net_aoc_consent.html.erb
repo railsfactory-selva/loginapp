@@ -1,0 +1,45 @@
+<div id="on_net_aoc_verify_thankyou">
+<% form_for :login,:url=>{:controller=>"consent",:action=>"on_net_aoc_consent_wireless"}, :html => {:id => "on_net_aoc_consent_wireless" }  do|f| %>
+	<p><strong><%=h @app_name %></strong>  by <%=h @dev_name %>, is requesting to bill the following <% if @period %><%=h @period.downcase %> <% end %>to your AT&amp;T wireless account.</p>
+	<table cellpadding="0" cellspacing="0">
+		<tr>
+			<td align="right" style="padding:7px;"><%=h @organization %></td>
+			<td align="right" style="padding:7px;"><%=h @charge %><% if @period %> / <% if @period.downcase == "monthly" %>mo<% else %><%=h @period.downcase %><% end %><% end %> +  tax</td>
+		</tr>
+	</table>
+	<div class="full-width button-group">
+		<p>
+			<%= f.hidden_field :session_id, :value => flash[:on_session_id] %>
+			<%= f.hidden_field :app_name, :value => "#{@app_name}" %>
+			<%= f.hidden_field :dev_name, :value => "#{@dev_name}" %>
+			<%= f.hidden_field :app_scope, :value => "#{@scope}" %>
+			<%= f.hidden_field :organization, :value => "#{@organization}" %>
+			<%= f.hidden_field :charge, :value => "#{@charge}" %>
+			<a class="button ok" href="javascript:submit_on_net_aoc_wireless();">Charge my account</a>
+		</p>
+		<p>
+			<a class="button cancel" href="<%= aoc_deny_pin_path %>">Cancel</a>
+		</p>
+		<br>
+		<p><SMALL>Refer to <%=h @dev_name %>'s Privacy Policy for details on how this information may be used or shared.   </SMALL></p>
+	</div>
+<% end %>
+<form action="" id="signup" method="post">
+	<hr style="clear:both">   
+	<h3>Existing Users</h3><!--move h3 to css and style center it-->
+	<!--begin email address-->
+	<p>To charge to another account click  the <strong> Sign in to another account </strong> button.  To sign in and manage consent settings click <strong> Manage Consent</strong>. 
+	</p>
+	<!--begin SIGNIN/Manage Profile Buttons -->
+	<div class="full-width button-group">
+		<p>
+		<a class="button ok" href="/user/payment/login?session_id=<%=h params[:sessionid]%>&login=true">Sign In to another account</a>
+		</p>
+	</div>
+	<div class="full-width button-group">
+		<p>
+			<a class="button ok" href="/myprofile">Manage Consent</a>
+		</p>
+	</div>
+</form>
+</div>

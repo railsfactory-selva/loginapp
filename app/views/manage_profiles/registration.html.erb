@@ -1,0 +1,129 @@
+<div id="spinner" style="display:none;margin-left:0px;margin-top:-168px;"></div>
+<% form_for :signup,:url=>{:controller=>"manage_profiles",:action=>"signup_create"},:html => {:id => "registration" } do|f| %>
+	<div class="message">
+    <h3>Create Account</h3>
+			<p>We just need a couple things to finish your account creation.</p>
+    </div>
+		<!--begin wireless number-->
+		<div class="clearfix">
+			<div class="fields-container">
+				<label for="phone">Wireless Number</label>
+				<div class="input-c">
+					<%= f.text_field :phone, :value => "#{@wireless_number}", :readonly => true, :style => "width:258px;" %>
+				</div>
+			</div>
+		</div>
+		<!--end wireless number-->
+		<!--begin email address-->
+		<div class="clearfix">
+			<div class="fields-container">
+				<label for="email">Email</label>
+				<div class="input-c">
+					<%= f.text_field :email, :value =>"#{@email}", :style => "width:258px;" %>
+				</div>
+			</div>
+		</div>
+		<!--end email address-->
+		<!--begin confirm email address-->
+		<div class="clearfix">
+			<div class="fields-container">
+				<label for="email">Confirm Email</label>
+				<div class="input-c">
+					<%= f.text_field :confirm_email, :value =>"#{@confirm_email}", :style => "width:258px;" %>
+				</div>
+			</div>
+		</div>
+		<!--end confirm email address-->
+
+	<!--begin create password-->
+		<div class="message">
+			<h4>Create Password</h4>
+		</div>
+		<div class="clearfix">
+    <div class="fields-container">
+      <label for="password">Enter Password</label>
+      <div class="input-c">
+				<%= f.password_field :password, :style => "width:258px;" %>
+      </div>
+    </div>
+  </div>
+  <div class="clearfix">
+    <div class="fields-container">
+      <label for="password_confirm">Confirm Password</label>
+      <div class="input-c">
+         <%= f.password_field :confirm_password, :style => "width:258px;" %>
+      </div>
+    </div>
+  </div>
+  <!--end create password-->
+  <!--begin birth year-->
+  <div class="message">
+    <h4>Birthday</h4>
+  </div>
+  <div class="clearfix">
+	<div class="fields-container">
+      <label for="year">Select Birth Year</label>
+      <div class="input-c" style="height:26px;">
+        &nbsp;&nbsp;&nbsp;
+				<% if @content_year %>
+      		<%= select_tag :content_year,  options_for_select(["Select Year"]) + options_for_select(1900..Time.now.year, @content_year.to_i), :onchange=>"javascript:change_in_year(#{Time.now.year});", :onkeypress => "javascript:change_in_year(#{Time.now.year});", :style => "width:38%;height:26px;" %>
+					<%= select_tag :content_month, options_for_select(months_list, @content_month), :style => "width:23%;height:26px;" %>
+					<%= select_tag :content_day, options_for_select(1..days_in_month(1,1900),@content_day.to_i), :style => "width:21%;height:26px;"%>
+				<% else %>
+					<%= select_tag :content_year, options_for_select(["Select Year"]) + options_for_select(1900..Time.now.year, :selected=>"Select Year"), :onchange=>"javascript:change_in_year(#{Time.now.year});", :onkeypress => "javascript:change_in_year(#{Time.now.year});", :style => "width:38%;height:26px;" %>
+					<%= select_tag :content_month, options_for_select(months_list, @content_month), :style=>"display:none;width:23%;height:26px;" %>
+					<%= select_tag :content_day, options_for_select(1..days_in_month(1,1900),@content_day.to_i), :style=>"display:none;width:21%;height:26px;"%>
+				<% end %>
+
+      </div>
+    </div>
+  </div>
+  <!--end birth year-->
+  <!--begin Captcha-->
+  <div class="message">
+    <h4>Security Check</h4>
+  </div>
+
+    <div class="img-captcha">
+		<% if flash[:error] %>
+			<p class="message error"><%= flash[:error] %></p>
+		<% elsif @result && @result['captcha'] %>
+								<%= hidden_field_tag :catcha_id, :"#{@result['captcha'][0]['captchaId']}" %>
+                <img src="data:image/jpeg;base64,<%=h @result['captcha'][0]['content'] %>" alt="Captcha Image">
+		<% end %>
+      <!-- left offset matches up with label below, so it's easy to read -->
+  </div>
+  <div class="clearfix">
+    <div class="fields-container">
+      <label for="phone">Type the word above</label>
+      <div class="input-c" id="firstCol_b" style="right: 9px; top: 11px;left:0px;width:270px;">
+        <%= f.text_field :captcha, :style => "width:258px;" %>
+      </div>
+    </div>
+  </div>
+  <!--end Captcha-->
+	<!--begin Terms and privacy -->
+	
+	<input type="hidden" id="t_n_c_id" name="tcid" value="<%=h @tc_id %>"/>
+	<% if flash[:reg_error] %><p class="message error" style="color:red;font-size:16px;"><%= flash[:reg_error] %></p><% end %>
+  <div id="firstCol_c">
+    <p>By clicking below, you confirm that you have read and agree to the <a href="#"></a> <a href="javascript:terms_and_conditions('<%= h @tc_content %>');">AT&amp;T ID Terms of Service</a> & <a href="#" onclick="javascript:privacypolicy('/Privacypolicy.html')">Privacy Policy.</a></p>
+  </div>
+  <!--end Terms and privacy-->
+  <!--begin Sign me up button-->
+  <div class="button-group">
+    <p><a class="button ok" href="javascript:submit_registration();">Sign Up</a></p>
+  </div>
+  <!--end Sign me up button -->
+<%end%>
+<script>
+	<% if ((flash[:reg_error] && !flash[:reg_error].blank?) && ((!flash[:error]) || (flash[:error] && flash[:error].blank?))) %>
+		window.scroll(0,1500);
+	<% end  %>
+	<% if @content_year %>      		
+		<% if Time.now.year - @content_year.to_i != 13 %>
+					document.getElementById('content_month').style.display="none";
+					document.getElementById('content_day').style.display="none";
+		<% end %>
+	<% end %>
+</script>

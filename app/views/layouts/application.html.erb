@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title><%= page_title %></title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<link rel="apple-touch-icon-precomposed" href="/images/apple-touch-icon.png">
+<link rel="stylesheet" href="/stylesheets/style.css" />
+	<%= javascript_include_tag :defaults%>
+	<%= javascript_include_tag 'application' %>
+<script type="text/javascript" src="/javascripts/curvycorners.js"></script>
+<!--[if lt IE 9]>
+<script src="https://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+</head>
+<body class="">
+<header>
+<h1 class="logo" id="logo_title"><%= logo_title %></h1>
+<img src="/images/att.png" alt="" id="logo" height="28" width="28" />
+</header>
+	<%= yield %>
+<footer>
+</footer>
+</body>
+</html>

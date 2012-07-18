@@ -1,0 +1,43 @@
+<script>
+document.title = "Basic Consent Ask | AT&T";
+document.body.childNodes[1].childNodes[1].innerHTML = "Basic Consent Ask | AT&T";
+</script>
+<% form_for :consent,:url=>{:controller=>"consent",:action=>"consent_confirmation"},:html => {:id => "consent_confirmation" } do|f| %>
+	<div class="message">
+		<p><strong><span class="app_name"><%=h @app_name %></span> by <span class="dev_name"><%=h @dev_name %></span></strong><br/>
+is requesting permission to access the following:</p>
+	</div>
+	<!--begin Services List -->
+	<div class="feature-list">
+		<ul>
+			<% count = 0 %>
+			<% @scope.each do |scope| %>
+			<% if scope == "DC" || scope == "TL" %>
+				<li>
+						<img class="feature-icon" src="/images/location-icon.png" alt="" height="38" width="33" />
+						<p class="feature">
+						<strong><%=h display_scope_name(scope) %> - </strong>
+						<strong class="app_name"><%=h @app_name %></strong> <%=h display_scope_description(scope) %>
+				</li>
+			<% end %>
+			<% end %>
+		</ul>
+	</div>
+	<!--end Services List -->
+	<%= f.hidden_field 'consent_status' %>
+	<!--begin directions content-->
+	<div class="message">
+		<p>Refer to <strong class="app_dev_name"><%=h @dev_name %>’s Privacy Policy</strong> for details on how this information may be used or shared. Click <em>ALLOW</em> below if you grant AT&amp;T permission to allow <em class="app_name"><%=h @app_name %></em> to access this information.</p>
+		<p>
+		To manage your permissions anytime, click <em>MANAGE PROFILE</em> on the AT&amp;T ID Sign In screen or visiting <a href="<%= "https://#{DEFAULT_CONFIG[RAILS_ENV]['login_app_url']}/myprofile" %>">https://<%= DEFAULT_CONFIG[RAILS_ENV]['login_app_url'] %>/myprofile</a>.</p>
+	</div>
+	<!--end directions content-->
+	<!--begin accept/decline Buttons -->
+	<div class="button-group">
+		<p>
+			<a class="button ok" href="javascript:submit_consent_confirmation_accept();">ALLOW</a>
+			<a class="button ok" href="javascript:submit_consent_confirmation_decline();">DECLINE</a>
+		</p>
+	</div>
+	<!--begin Accept/decline Buttons -->
+<% end %>

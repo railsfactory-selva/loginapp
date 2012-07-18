@@ -1,0 +1,78 @@
+<% form_for :login,:url=>{:controller=>"on_off_network",:action=>"off_net_consent_wireless"}, :html => {:id => "off_net_consent_wireless" }  do|f| %>
+	<p><strong><%=h @app_name %></strong>  by <%=h @dev_name %>, is requesting to do the following: 
+		<div id="firstCol_b">
+			<ul>
+			<% @duration = "false" %>
+				<% if @scope %>
+					<% @scope.each do |scope| %>
+					<% if scope == "DC" || scope == "TL" || scope == "MOBO" || scope == "MIM" %>
+					   <% if scope == "MOBO" || scope == "MIM" %>
+							<% @duration = "true" %>
+						<% end %>
+						<li><%=h display_scope_name(scope) %> - <SMALL><%=h @app_name %> <%=h display_scope_description(scope) %> </SMALL> </li><br>
+						<% end %>
+					<% end %>
+				<% end %>
+			</ul>
+			<p>If ok, enter the wireless phone number and click Allow. A verification message will be sent.	</p>
+		</div>
+	<br><p></p>
+	<br>
+		<div id="firstCol_b">
+			<label for="phone"><span>Wireless Number</span></label> 
+		</div>
+		<div id="firstCol_a">
+			<img src="/images/att_fi_tchscrn_rgb_grd.png" alt="" height="50">
+		</div>
+		<div class="input-c" id="firstCol_b" style="right: 9px; top: 9px">
+			<%= f.text_field :wireless, :onkeypress=>"javascript: return checkIt(event);"%>
+			<%= f.hidden_field :client_id, :value => "#{@client_id}"  %>
+			<%= f.hidden_field :scope, :value => "#{@display_scope}" %>
+			<%= f.hidden_field :id, :value => params[:id] %>
+			<%= f.hidden_field :app_name, :value => "#{@app_name}" %>
+			<%= f.hidden_field :dev_name, :value => "#{@dev_name}" %>
+			<%= f.hidden_field :app_scope, :value => "#{@scope}" %>
+			<%= f.hidden_field :no_of_tries, :value => "0" %>
+			<!--<input  name="phone" type="text" value="4252221234" style="color: silver;">-->
+		</div>
+		<% if @duration == "true" %>
+			<div id="firstCol_a">
+				<img src="/images/att_fi_tchscrn_rgb_grd.png" alt="" height="50">
+			</div>
+			<%= select_tag :duration,  options_for_select(["Until I change"]), :style => "background: none repeat scroll 0 0 white; border: 3px solid #375D89; border-radius: 15px 15px 15px 15px; margin: 0 0 1em; font-size:16px; height: 32px; width:75%; text-align:center; margin-left: 10px;" %>		
+		<% end %>
+		<div class="full-width button-group">
+			<p>
+				<a class="button ok" href="javascript:submit_off_net_wireless();">Allow</a>
+			</p>
+			<p>
+				<a class="button cancel" href="<%= deny_pin_path %>">Cancel</a>
+			</p>
+			<p style="text-align:center; margin-left:10px;color:red;" id="net_error_id"><%= flash[:net_error] %></p>
+			<br>
+			<p><SMALL>Refer to <%=h @dev_name %>'s Privacy Policy for details on how this information may be used or shared.</SMALL>
+			</p>
+		</div>
+	<% end %>
+	<form action="" id="signup" method="post">
+		<hr style="clear:both">   
+		<h3>Existing Users</h3><!--move h3 to css and style center it-->
+		<!--begin email address-->
+		<p>To allow use with another account click  the <strong> Sign in to another account </strong> button.  To sign in and manage consent settings click <strong> Manage Consent</strong>. 
+		</p>
+		<!--begin SIGNIN/Manage Profile Buttons -->
+		<div class="full-width button-group">
+			<p>
+				<a class="button ok" href="/user/login?client_id=<%=h @client_id %>&scope=<%=h @display_scope %>&id=<%=h params[:id] %>&redirect_url=<%= @redirect_url %>&login=true">Sign In to another account</a>
+			</p>
+		</div>
+		<div class="full-width button-group">
+			<p>
+				<a class="button ok" href="/myprofile">Manage Consent</a>
+			</p>
+		</div>
+	</form>
+
+        <script type="text/javascript">
+          window.onload = checkCookiesEnabledOrNotAndDisplayErrorMessage('net_error_id');
+        </script>

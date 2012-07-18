@@ -1,0 +1,20 @@
+<% form_for :login,:url=>{:controller=>"manage_profiles",:action=>"login_create"},:html => {:id => "login" }  do|f| %>
+    <div class="message error">
+      <p>Your email address and password do not match. Please re-enter to continue.</p>
+    </div>
+    <div>
+      <label for="email">Email Address</label>
+      <div class="input-c"><%= f.text_field:username %></div>
+    </div>
+    <div>
+      <label for="password">Password</label>
+      <div class="input-c"><%= f.password_field:password %></div>
+    </div>
+    <div>
+       <p>I accept the <a href="#">Terms</a> &amp; <a href="#">Privacy Policy</a>.</p>
+    </div>
+    <div class="button-group">
+      <p><a class="button ok" href="javascript:submit_login();">OK</a>
+      <a class="button cancel" href="/login">Cancel</a></p>
+    </div>
+<%end%>

@@ -1,0 +1,53 @@
+<% form_for :validate,:url=>{:controller=>"manage_profiles",:action=>"validate_pin"},:html => {:id => "resend_mobile_pin" }  do|f| %>
+	<div class="message">
+		<p><strong>Congratulations!</strong><br/>
+			Your account has been successfully created. The final step is to activate your account by validating your wireless number and email.<br/>
+			<br/>Check your SMS messages for Activation Code and enter below.
+		</p>
+	</div>
+	<!--begin SMS Text PIN -->
+	<div class="clearfix">
+		<div class="fields-container">
+			<label for="smstext">SMS Text PIN <small><a href="<%= resend_mobile_pin_path(:mobile_number => @wireless_number,:email => @email, :appId => @appId) %>">Resend PIN</a></small></label>
+			<div class="input-c">
+			<% if @mobile_valid && @mobile_valid == true %>
+				<%= f.text_field :phone, :value => @mobile, :readonly =>true, :style => "width:258px;"  %>
+			<% else %>
+				<%= f.text_field :phone, :style => "width:258px;"  %>		
+			<% end %>
+			</div>
+			<%if flash[:error_mpin]%><span style="align:left;color:red;font-size:16px;"><%= flash[:error_mpin] %></span><%end%>
+			<%if flash[:success_mpin]%><span style="align:left;color:green;font-size:16px;"><%= flash[:success_mpin] %></span><%end%>
+		</div>
+	</div>
+	<!--end SMS Text PIN -->
+	<hr>
+	<div class="message">
+		<p>
+			Check your email for Activation Code and enter below.
+		</p>
+	</div>
+  <%= hidden_field_tag :mobile_number, "#{@wireless_number}"%>
+	<!--begin email address-->
+	<div class="clearfix">
+		<div class="fields-container">
+			<label for="email">Email PIN <small><a href="<%= resend_email_pin_path(:mobile_number => @wireless_number,:email => @email, :appId => @appId) %>">Resend PIN</a></small></label>
+			<div class="input-c">
+				<% if @emailpin_valid && @emailpin_valid == true %>
+					<%= f.text_field :email, :value => @email, :readonly=> true, :style => "width:258px;" %>
+				<% else %>
+					<%= f.text_field :email, :style => "width:258px;"  %>
+				<% end %>
+			</div>
+			<%if flash[:error_epin] && !flash[:error_epin].nil?%><span style="align:left;color:red;font-size:16px;"><%= flash[:error_epin] %></span><%end%>
+			<%if flash[:success_epin] && !flash[:success_epin].nil? %><span style="align:left;color:green;font-size:16px;"><%= flash[:success_epin] %></span><%end%>
+		</div>
+	</div>
+	<!--end email address-->
+	<div class="button-group">
+		<p>
+			<a class="button ok" href="javascript:validate_pin();">Submit</a>
+			<a class="button secondary" href="<%= login_path(:login=>"registration") %>">Cancel</a>
+		</p>
+	</div>
+<% end %>

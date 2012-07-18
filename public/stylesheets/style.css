@@ -1,0 +1,585 @@
+﻿/*
+ *    AT&T Mobile CSS Styles
+ *    Prepared by Jay Robinson
+ *    for Sencha Inc.
+ *    Feb 28, 2011
+ *
+ ************************************/
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: #fff url(/images/bg.jpg) no-repeat 0 0;
+    color: #333;
+    font-family:ClvATT-Book, ClvATT-Book-Ital, ClvATT-Light, ClvATT-Light-Ital, ClvATT-Bold, ClvATT-Bold-Ital;
+    font-size: 16px;
+    line-height: 1.2;
+    margin: 0 auto;
+    outline: 3px solid #375D89;
+    overflow: auto;
+    padding: 0;
+    position: relative;
+    text-align: left;
+    text-shadow: 0 0.1em 0 rgba(255,255,255,0.333);
+    width: 100%;
+
+        margin: 0;
+        min-height: 480px;
+        width: 320px;
+}
+
+@font-face
+{
+	font-family:ClvATT-Bold-Ital;
+	src: url(fonts/ClvATT-Bold-Ital.otf);
+}
+
+
+@font-face
+{
+	font-family:ClvATT-Bold;
+	src: url('fonts/clvatt-bold-webfont.eot');
+    src: url('fonts/clvatt-bold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/clvatt-bold-webfont.woff') format('woff'),
+         url('fonts/clvatt-bold-webfont.ttf') format('truetype'),
+         url('fonts/clvatt-bold-webfont.svg#ClearviewATTBold') format('svg');
+    font-weight: bold;
+    font-style: normal;
+	src: url(fonts/ClvATT-Bold.otf);
+}
+
+
+@font-face
+{
+	font-family:ClvATT-Book;
+	src: url('fonts/clvatt-book-webfont.eot');
+    src: url('fonts/clvatt-book-webfont.eot?#iefix') format('embedded-opentype'), 
+		 url('fonts/clvatt-book-webfont.woff') format('woff'),
+         url('fonts/clvatt-book-webfont.ttf') format('truetype'),
+         url('fonts/clvatt-book-webfont.svg#ClearviewATTBook') format('svg');
+    font-weight: normal;
+    font-style: normal;
+	src: url(fonts/ClvATT-Book.otf);
+}
+
+@font-face
+{
+	font-family:ClvATT-Book-Ital;
+    src: url('fonts/clvatt-book-ital-webfont.eot');
+    src: url('fonts/clvatt-book-ital-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/clvatt-book-ital-webfont.woff') format('woff'),
+         url('fonts/clvatt-book-ital-webfont.ttf') format('truetype'),
+         url('fonts/clvatt-book-ital-webfont.svg#ClearviewATTBookItalic') format('svg');
+    font-weight: normal;
+    font-style: italic;
+	src: url(fonts/ClvATT-Book-Ital.otf);
+}
+
+@font-face
+{
+	font-family:ClvATT-Light;
+	src: url(fonts/ClvATT-Light.otf);
+}
+
+
+@font-face
+{
+	font-family:ClvATT-Light-Ital;
+	src: url(fonts/ClvATT-Light-Ital.otf);
+}
+
+a:link,
+a:visited,
+a:hover,
+a:focus,
+a:active {
+    color: #3AA5DC;
+}
+
+a:hover,
+a:focus,
+a:active {
+    color: #020BB3;
+}
+
+h1 {
+    color: white;
+}
+
+h2 {
+    margin: 1em 0;
+}
+
+p {
+    font-size: 14px;
+    margin: 1em 0;
+    text-align: center;
+}
+
+.list ul {
+    list-style: square;
+    margin: 1em 22px 1em 44px;
+}
+
+.links-list ul {
+    list-style: none;
+    margin: 1em 22px;
+}
+
+.links-list ul li {
+    border-bottom: 1px solid #e8e8e8;
+
+}
+.appDivider ul li {
+    display: list-item;
+    border-bottom: 1px solid #e8e8e8;
+    list-style: none;
+    margin: 1em 22px;
+
+}
+
+
+.links-list ul li a {
+    border-top: 1px solid #fff;
+    border-bottom: 1px solid #e8e8e8;
+    display: block;
+    padding: 1em 0;
+}
+
+.links-list ul li:first-child a {
+    border-top: none;
+}
+
+.links-list ul li:last-child a {
+    border-bottom: none;
+}
+
+header {
+   
+    overflow: auto;
+    padding: 2px 20px 0;
+    text-shadow: 0 0.1em 0 rgba(0,0,0,0.333);
+    background: #0085C2 url(/images/header_bg.jpg) repeat-x top center;
+
+}
+
+header h1 {
+    font-size: 115%;
+    font-weight: normal;
+    padding: 8px 0;
+    text-align: left;
+}
+
+header {
+    display: block;
+    padding: 2px 20px 4px;
+    position: relative;
+
+}
+
+footer {
+    position: relative;    
+}
+
+footer.logo {
+    height: 48px;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+#logo {
+    position: absolute;
+    top:7px;
+    right: 24px;
+}
+
+
+
+table {
+    width: 270px;
+    max-width: 280px;
+}
+
+table td {
+    padding: 8px;
+}
+
+table .tax {
+    border-bottom: 1px solid #d6d6d6;
+}
+
+table .total {
+    border-top: 1px solid #fff;
+}
+
+form {
+    margin: 12px 22px 0;
+    overflow: auto;
+	overflow-x: hidden;
+/*     max-width: 480px; */
+}
+
+form label {
+    display: block;
+    padding: 0 12px 6px;
+    text-align: left;
+}
+
+
+
+#inputWirelessPhonePosition
+{
+position:relative;
+}
+
+
+#iconemail
+{
+position:relative;
+}
+
+#inputEmailPositionSize
+{
+position:relative;
+
+}
+
+#terms
+{
+	position:relative;
+}
+
+
+#firstCol_a
+{
+	width:52px;
+	float:left;
+	margin: 20 0 0 0;
+}
+
+#firstCol_b
+{
+	width:201px;
+	float:right;
+	position:relative;
+	text-shadow: #666666 4px 4px 4px;
+	left:-7px;
+}
+
+#firstCol_b span
+{
+	float: left;
+}
+
+#firstCol_c
+{
+	width:260px;
+	float:left;
+	margin-top:20px;
+}
+
+#firstCol_d
+{
+	width:150px;
+	float:left;
+	margin-top:5px;
+}
+
+
+#secondCol_a
+{
+	width:100px;
+	float:left;
+	text-shadow: #666666 4px 4px 4px;
+	left:7px;
+	position: relative;
+	
+}
+#secondCol_b
+{
+	width:120px;
+	float:left;
+	text-shadow: #666666 4px 4px 4px;
+	left:7px;
+	position: relative;
+	
+}
+
+
+
+
+form input {
+    background: none;
+    border: 0;
+    font-size: 16px;
+    outline: 0;
+    padding: 4px 8px;
+    width: 185px;
+}
+
+
+
+form .input-c 
+{
+    background: white;
+    border: 3px solid #375D89;
+    border-radius: 20px;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 15px;
+    margin: 0 0 1em;
+
+}
+
+
+
+
+form .input-c:focus,
+form .input-c:active {
+    border: 3px solid #3AA5DC;
+}
+
+form .check-list ul {
+    list-style: none;
+    margin: 1em 0;
+}
+
+form .check-list ul li {
+    padding: 11px 0;
+}
+
+form .check-list label {
+    display: inline;
+}
+
+form .checkbox {
+    display: block;
+    float: left;
+    width: 25px;
+}
+
+form .button {
+    background-color: #FAFAFA;
+    border: 2px solid #375D89;
+    color: #fff;
+    display: inline-block;
+    font-family: "Lucida Grande", Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 1;
+    padding: 4px 0;
+    text-decoration: none;
+    text-shadow: rgba(0,0,0,0.5) 0 -0.08em 0;
+    width: 46%;
+    border-radius: 20px;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 15px;
+}
+
+form .buttonSmall {
+    background-color: #567804;
+    border: 2px solid #375D89;
+    color: #fff;
+    display: inline-block;
+    font-family: "Lucida Grande", Helvetica, Arial, sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+    line-height: 1;
+    padding: 4px 0;
+    text-decoration: none;
+    text-shadow: rgba(0,0,0,0.5) 0 -0.08em 0;
+    width: 46%;
+    border-radius: 20px;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 15px;
+}
+
+
+form .full-width .button {
+    width: 90%;
+}
+
+.message {
+    margin-bottom: 2em;
+}
+
+.error {
+    color: red;
+}
+
+.button-group {
+    margin: 1.2em 0;
+}
+
+
+form .buttonMini {
+    background-color: #FAFAFA;
+    border: 2px solid #375D89;
+    border-radius: 20px;
+    color: #fff;
+    display: inline-block;
+    font-family: "Lucida Grande", Helvetica, Arial, sans-serif;
+    font-size:x-small;
+    font-weight: bold;
+    line-height: 1;
+    padding: 4px 0;
+    text-decoration: none;
+    text-shadow: rgba(0,0,0,0.5) 0 -0.08em 0;
+    width: 85px;
+}
+
+
+.ok {
+    background-color: #6C9804;
+    
+    background: #0085C2 url(/images/ok_btn_bg.jpg) repeat-x top center;
+    border: 2px solid #374E02;
+    border-color: #374E02 #263501 #263501;
+
+    -webkit-box-shadow: rgba(255, 255, 255, 0.1) 0 0.1em 0;
+
+    color: #fff;
+}
+
+.ok:focus,
+.ok:active {
+    background-color: #A1B3CB;
+}
+
+.cancel, .secondary {
+    background-color: #646D7E;
+    background: #646D7E url(/images/cancel_btn_bg.jpg) repeat-x top center;
+    border: 2px solid #A6A6A6;
+    border-color: #A6A6A6 #999 #999;
+
+    -webkit-box-shadow: rgba(255, 255, 255, 0.1) 0 0.1em 0;
+
+    color: black;
+    /*margin-left: 8px;*/
+    text-shadow: rgba(255,255,255,0.25) 0 0.08em 0;
+}
+
+.cancel:focus,
+.cancel:active, .secondary:focus,
+.secondary:active{
+    background-color: #DDD;
+
+}
+
+form .button:focus,
+form .button:active {
+    background: #ddd;
+}
+
+form .signMeUpbutton {
+    background-color: #FAFAFA;
+    border: 2px solid #375D89;
+    border-radius: 20px;
+    color: #fff;
+    display: inline-block;
+    font-family: "Lucida Grande", Helvetica, Arial, sans-serif;
+    font-size: 18px;
+    font-weight: bold;
+    line-height: 1;
+    padding: 8px 0;
+    text-decoration: none;
+    text-shadow: rgba(0,0,0,0.5) 0 -0.08em 0;
+    width: 100%;
+}
+
+
+.feature-icon{
+float:left;
+margin-right:10px;
+}
+
+.clearfix:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+    }
+
+
+/**** HTML 5 REQUIRED STYLES FOR IE ****/
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+    display: block;
+}
+
+/*
+ *    Additional Styles
+ *    Prepared by Jay Robinson
+ *    for Sencha Inc.
+ *    May 23, 2011
+ *
+ ************************************/
+
+.img-container {
+  float: left;
+  height:80px; 
+  width: 70px;
+}
+
+.img-container img {
+  opacity: 0.8;
+  position: relative;
+  top: 3px;
+}
+
+.fields-container {
+  margin-left: 0px;
+}
+
+.img-captcha img {
+  display:block;
+  margin:12px 0 12px 0px;
+  /* left offset matches up with label below, so it's easy to read */
+}
+
+hr {
+    background-color: #e0e0e0;
+    border: none;
+    color: #e0e0e0;
+    height: 1px;
+    margin: 2.5em auto;
+    outline: none;
+}
+
+
+#existing_users, #new_users{
+margin-top:20px;
+}
+
+/* Added as an additional sytles added for showing the spinner during AJAX call */
+#spinner {
+	-moz-background-clip:border;
+	-moz-background-inline-policy:continuous;
+	-moz-background-origin:padding;
+	-x-system-font:none;
+	background: url(../images/spinner.gif) no-repeat scroll center center;
+	font-family:Tahoma,Geneva,sans-serif;
+	font-size:16px;
+	font-size-adjust:none;
+	font-stretch:normal;
+	font-style:normal;
+	font-variant:normal;
+	font-weight:normal;
+	height:100%;
+	left:0;
+	line-height:normal;
+	opacity:0.5;
+	overflow:auto;
+	padding:0px;
+	margin-left:85px;
+	margin-top: -185px;
+	position:absolute;
+	text-align:center;
+	top:0;
+	width:100%;
+	z-index:9999;
+}

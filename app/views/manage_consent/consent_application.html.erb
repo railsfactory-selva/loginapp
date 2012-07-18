@@ -1,0 +1,33 @@
+<% form_for :consent,:url=>{:controller=>"manage_consent",:action=>"revoke_application"},:html => {:id => "revoke_application" } do|f| %>
+	<p><strong><%=h @application_name %></strong>  by <%=h @developer_name %>, is requesting do the following: 
+	<div id="firstCol_b">
+		<ul>
+			<% @application_scope.each do |scope| %>
+				<% if scope == "DC" || scope == "TL"  || scope == "MOBO" || scope == "MIM" %>
+					<li><%=h display_scope_name(scope) %> - <SMALL><%=h @application_name %> <%=h display_scope_description(scope) %> </SMALL> </li><br>
+				<% end %>
+			<% end %>
+		</ul>
+		<p style="margin-left:-65px;"><strong>To remove this access, click Don't Allow.</strong></p>
+	</div>
+	<br><p></p>
+	<br>
+	<%= f.hidden_field 'application_name', :value => "#{@application_name}" %>
+	<%= f.hidden_field 'application_scope', :value => "#{@application_scope}" %>
+	<div class="full-width button-group">
+		<p>
+		   <% if @application_status && @application_status == "false" %>
+				<a class="button cancel" href="javascript:revoke_application();">Don't Allow</a>
+			<% else %>
+				<a class="button ok" href="javascript:revoke_application();">Don't Allow</a>
+			<% end %>
+		</p>
+		<p>
+			<a class="button cancel" href="<%= applications_path %>">Back</a>
+		</p>
+		<p>
+			<br>
+			<p><SMALL>Refer to <%=h @developer_name  %>'s Privacy Policy for details on how this information may be used or shared.   </SMALL>
+		</p>
+	</div>
+<% end %>

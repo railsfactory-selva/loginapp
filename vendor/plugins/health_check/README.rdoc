@@ -1,0 +1,79 @@
+= health_check
+
+Simple health check of Rails app for use with uptime.openacs.org or wasitup.com
+
+The basic goal is to check that rails is being launched and that it has access to correctly configured resources (database, email gateway)
+
+The email gateway is not checked unless the smtp settings have been changed,
+specify full or include email in the list of checks or varify the smtp settings
+(eg use 127.0.0.1 instead of localhost). 
+
+health_check provides various monitoring URIs 
+
+    % curl localhost:3000/health_check
+    success
+
+    % curl localhost:3000/health_check/standard
+    success
+
+    % curl localhost:3000/health_check/all
+    success
+
+    % curl localhost:3000/health_check/site_and_database_and_email_migrations
+    success
+
+== Installation
+
+As a Plugin
+
+    % cd vendor/plugins
+    % git clone git://github.com/ianheggie/health_check.git
+
+As a Gem from gemcutter
+
+    % gem install health_check    
+    # Add the following line to config/environment.rb
+    config.gem "health_check"
+
+== Uptime Monitoring
+
+See
+* [WasItUp](http://wasitup.com/)
+* [Uptime by OpenACS](http://uptime.openacs.org/uptime/)
+* [Engine Yard's guide](http://community-support.engineyard.com/faqs/guides/uptime-monitoring-for-your-rails-application) guide based on fitter_happier plugin includes monit and other setup help
+
+== Checks
+
+* standard (default) - site, database and migrations checks are run plus email if settings have been changed
+* all / full - all checks are run
+* database - checks that the database contains the current migration level
+* email - basic check of email - :test returns true, :sendmail checks file is present and executable, :smtp sends HELO command to server and checks response 
+* migration - checks that the database migration level matches that in db/migrations
+* site - checks rails is running sufficiently to render text 
+
+== Note on Patches/Pull Requests
+ 
+* Fork the project.
+* Make your feature addition or bug fix.
+* Add tests for it. This is important so I don't break it in a
+  future version unintentionally.
+* Commit, do not mess with rakefile, version, or history.
+  (if you want to have your own version, that is fine but bump version in a commit by itself I can ignore when I pull)
+* Send me a pull request. Bonus points for topic branches.
+
+== Copyright
+
+Copyright (c) 2010 Ian Heggie, released under the MIT license.
+See MIT-LICENSE for details.
+
+== Known Issues 
+
+* Rails 1.x s not currently supported (smtp_settings versus server_settings)
+* I wasn't able to get tests to work standalone - the gem has to be installed as a plugin for the tests to work
+* No inline documentation for methods
+
+* Feedback welcome especially with suggested replacement code and corresponding tests
+
+== Similar projects
+
+* fitter_happier plugin by atmos - plugin with similar goals, but not compatible with uptime, and does not check email gateway 

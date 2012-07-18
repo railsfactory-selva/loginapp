@@ -1,0 +1,48 @@
+	<% form_for :login,:url=>{:controller=>"manage_profiles",:action=>"registration", :protocol => 'https', :only_path => false},:html => {:id => "first_signup" }  do|f| %>
+  <!-- Begin Existing Users Form -->
+  <div id="new_users">
+    <div class="message" style="font-size:small;">
+      <p>Not a user yet? Sign up for your AT&amp;T ID.</p>
+      <p>Enter your AT&amp;T wireless number below.</p>
+    </div>
+		<!--begin wireless number-->
+    <div class="clearfix">
+      <!--<div class="img-container alignleft">
+        <label for="phone"><img src="/images/att_fi_tchscrn_rgb_grd.png" alt="" height="50"></label>
+      </div>-->
+      <div class="fields-container">
+        <label for="phone">Wireless Number</label>
+        <div class="input-c">
+          <%= f.text_field :phone, :style => "width:258px;" %>
+        </div>
+      </div>
+    </div>
+		<%= f.hidden_field :captcha_id, :value => "#{@captcha_id}" %>
+		<!--end wireless number-->
+    <!--begin Captcha--><!-- Ideally, the captcha is not duplicated on the page in order to avoid unnecessary HTTP requests -->
+    <div class="img-captcha">
+      <img src="data:image/jpeg;base64,<%=h @captcha_content %>" alt="Captcha Image">
+      <!-- left offset matches up with label below, so it's easy to read -->
+    </div>
+    <div class="clearfix">
+      <!--<div class="img-container alignleft">
+        <label for="captcha"><img src="/images/att_fi_sec_rgb_sol_pos.png" alt="" height="50"></label>
+      </div>-->
+      <div class="fields-container">
+        <label for="captcha">Type the word above</label>
+        <div class="input-c" id="firstCol_b" style="right: 9px; top: 11px;left:0px;width:270px;">
+          <%= f.text_field :captcha_phrase, :style => "width:258px;" %>
+        </div>
+      </div>
+    </div>
+		<% if flash[:reg_error] %><p class="message error" style="margin-bottom:-18px;margin-top:2px;"><%= flash[:reg_error] %></p><% end %>
+    <!--end Captcha-->
+    <div class="button-group" align="center">
+      <a class="button ok" href="javascript:document.forms['first_signup'].submit();">Sign Up</a>
+    </div>
+  </div>
+</div>
+<% end %>
+<script>
+  document.getElementById('spinner').style.display = "none"
+</script>

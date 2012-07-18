@@ -1,0 +1,43 @@
+<% form_for :manage_consent,:url=>{:controller=>"manage_consent",:action=>"mc_off_net_validate_pin"}, :html => {:id => "mc_off_net_send_pin" }  do|f| %>
+	<br>
+	<br>
+	<p>
+		<strong>Verifying</strong> <p>
+		<br>Check your mobile device for a verification PIN.  Enter the PIN below to verify the request.
+	</p>
+	<br>
+	<br>
+	<p>
+		<div style="height: 65px">
+			<div id="firstCol_b">
+				<label for="phone"><span>SMS Text PIN</span></label> 
+			</div>
+			<div id="firstCol_a">
+				<img src="/images/att_fi_tchscrn_rgb_grd.png" alt="" height="50"/>
+			</div>
+			<div class="input-c" id="secondCol_a" >
+				<%= f.text_field :phone, :onkeypress=>"javascript: return checkIt(event);javascript: limitText(this,this.countdown,4);",:onKeyUp=>"javascript:limitText(this,this.form.countdown,4);", :style => "width:85px;" %>
+			</div>
+			<div id="secondCol_b" style="left: 156px; top: -65px">
+				<p>
+					<a class="buttonSmall ok" href="<%= mc_resend_pin_path %>">Resend PIN</a>
+				</p>
+			</div>
+		</div>
+		<div>
+			<span style="text-align:center; color:green;position:absolute;margin-left:-140px;width:250px;"><%= flash[:mc_net_success] %></span>
+			<span style="text-align:center; color:red;position:absolute;margin-left:-140px;width:250px;"><%= flash[:mc_off_error] %></span>
+		</div>
+		<!--end SMS Text msg Code-->
+		<br>
+		<br>
+		<br>
+		<br>
+		<div class="button-group">
+			<p>
+				<a class="button ok" href="javascript:mc_off_net_send_pin();" style="width:40%">OK</a>
+				<a class="button cancel" href="<%= manage_consent_home_path %>" style="width:51%">Cancel</a>
+			</p>
+		</div>
+	</div>
+<% end %>

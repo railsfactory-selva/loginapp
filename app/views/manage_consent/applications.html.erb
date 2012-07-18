@@ -1,0 +1,33 @@
+<% form_for :consent,:url=>{:controller=>"manage_consent",:action=>"consent_application"},:html => {:id => "consent_application" } do|f| %>
+	<div class="message">
+		<p>
+			<strong>Manage Application Consent</strong><br/>
+			Click on any listed application to view your Consent status.
+		</p>
+	</div>
+	<div class="appDivider">
+		<div class="links-list">
+			<ul style="text-align: left;font-size: 13px;margin:0px">
+			<% if @app_names %>
+				<% count = 0 %>
+				<% @app_names.each do |app| %>
+					<input type="hidden" id="app_<%=h app[0] %>" value="<%=h app[0]%>" />
+					<input type="hidden" id="scope_<%=h app[0] %>" value="<%=h @scopes[count][0] %>" />
+					<li>
+                                              <a href="javascript:issue_current_consent('<%=h app[0] %>');">
+                                                <table>
+                                                  <tr><td valign="top" style="padding-top: 0px; padding-left: 0px; padding-bottom: 0px; padding-right: 2px" width="25%">Company:</td><td style="padding:0px"><span class="inline"> <%=h @dev_names[count] %></span></td></tr>
+                                                  <tr><td valign="top" style="padding-top: 0px; padding-left: 0px; padding-bottom: 0px; padding-right: 2px">Application:</td><td style="padding:0px"><span class="inline"><%=h app[0] %></span></td></tr>
+                                                  <tr><td valign="top" style="padding-top: 0px; padding-left: 0px; padding-bottom: 0px; padding-right: 2px"/>Description:<td style="padding:0px"><span class="inline"> <%=h @descriptions[count][0] %></span></td></tr>
+                                                </table>
+					     </a>
+					</li>
+					<% count = count + 1 %>
+				<% end %>
+			<% end %>
+			</ul>
+		</div>
+	</div>
+	<%= f.hidden_field 'application_name' %>
+	<%= f.hidden_field 'application_scope' %>
+<% end %> 

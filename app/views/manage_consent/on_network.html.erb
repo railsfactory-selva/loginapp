@@ -1,0 +1,61 @@
+<% if params[:bookmark] && params[:bookmark] == "true" %>
+	<link rel="stylesheet" href="/stylesheets/add2home.css">
+	<script type="application/javascript" src="/javascripts/add2home.js"></script>
+	<% if params[:android] && params[:android] == "true" %>
+		<script type="application/javascript" src="/javascripts/ModalPopups.js"></script>
+		<script>
+		function ModalPopupsAlert1() {  
+			ModalPopups.Alert("jsAlert1",  
+					"Bookmarking Manage Consent Page",  
+					"<div style='padding:25px;'>Click on the 'Star' <img src='/images/star.jpeg' alt='' style='height:21px;' /> icon in the address bar, to bookmark this page<br/></div>",   
+					{  
+							okButtonText: "Close"  
+					}  
+			);  
+		}  
+		ModalPopupsAlert1();
+		document.getElementById('jsAlert1_popup').style.left=0;
+		document.getElementById('jsAlert1_popup').style.width='310px';
+		document.getElementById('jsAlert1_popupTitle').style.width='301px';
+		document.getElementById('jsAlert1_popupBody').style.width='301px';
+		document.getElementById('jsAlert1_popupFooter').style.width='301px';  
+		document.getElementById('jsAlert1_shadow').style.left=0;
+		</script>
+	<% end %>
+<% end %>
+
+
+<div id="mc_on_net_verify_thankyou">
+	<% form_for :login,:url=>{:controller=>"manage_consent",:action=>"on_net_manage_consent"}, :html => {:id => "on_net_manage_consent" }  do|f| %>
+			<p>
+					<p>To manage consent for this device press the access manage consent button.</p>
+			</p>
+			<div class="full-width button-group">
+					<p>
+					<a class="button ok" href="javascript:on_net_manage_consent();">Access Manage Consent</a>
+					</p>
+			</div>
+			<hr style="clear:both">   
+			<h3>Use ID & Password</h3><!--move h3 to css and style center it-->
+			<!--begin email address-->
+			<p>
+					To use ID & Password based verification to manage consent for  this or another account, or to change your password, press the use ID & password button.   
+			</p>
+			<!--begin SIGNIN/Manage Profile Buttons -->
+			<div class="full-width button-group">
+					<p>
+							<a class="button ok" href="/user/login?login=mc">Use ID & Password</a>
+					</p>
+			</div>
+			<hr style="clear:both"> 
+			<div class="full-width button-group">
+					<h3>Sign up for an ID & Password</h3><!--move h3 to css and style center it--> 
+					<p>
+							To sign up for an ID and password press the sign up now button.  Once you have signed up, you can use your ID and password to manage consent  without needing access to your device.
+					</p>
+					<p>
+							<a class="button ok" href="/user/login?login=mc&mc_registration=true">Sign up now</a>
+					</p>
+			</div>
+	<% end %>
+</div>

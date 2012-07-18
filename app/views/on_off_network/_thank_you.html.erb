@@ -1,0 +1,41 @@
+<script>
+document.title = "Thank You | AT&T";
+document.getElementById('logo_title').innerHTML = "Thank You";
+favicon_headers();
+</script>
+<form action="" id="signup" method="post">
+    <br>
+    <br>
+    <p>
+    <strong>Thank You!</strong> 
+    <br>
+    </p>
+    <p>
+        <%=h @app_name %> by <%=h @dev_name %> use of <%=h @scope %> <%=h @duration %>.
+</form>
+ <% form_for :login,:url=>{:controller=>"manage_profiles",:action=>"off_network_registration"}, :html => {:id => "off_network_registration" }  do|f| %>
+    <div class="full-width button-group">
+       	<p>
+          	<a class="button ok" href="<%= @redirect_url %>">Close window</a>
+		<%= f.hidden_field :wireless, :value => @wireless %>
+		<input type="hidden" id="bookurl" value="<%= "https://#{DEFAULT_CONFIG[RAILS_ENV]['login_app_url']}/myprofile" %>"/>
+	</p>
+   </div>
+		<p>
+			<strong>Manage Consent</strong> 
+			<br>
+		</p>
+		<SMALL>To change your consent choices at any time use the button below to save a bookmark or point your browser to <a href="<%= "https://#{DEFAULT_CONFIG[RAILS_ENV]['login_app_url']}/myprofile" %>">https://<%= DEFAULT_CONFIG[RAILS_ENV]['login_app_url'] %>/myprofile</a>.
+		</SMALL>
+		<div class="full-width button-group">
+			<p>
+			<% if @browser_used == "ipad" || @browser_used == "iphone"  %>
+					<a class="button ok" href="<%= "https://#{DEFAULT_CONFIG[RAILS_ENV]['login_app_url']}/myprofile?bookmark=true" %>">Add Bookmark</a>
+			<% elsif @users_agent.include?("android") %>
+					<a class="button ok" href="<%= "https://#{DEFAULT_CONFIG[RAILS_ENV]['login_app_url']}/myprofile?bookmark=true&android=true" %>">Add Bookmark</a>
+			<% else %>
+					<a class="button ok" href="javascript:addBookmark();">Add Bookmark</a>
+			<% end %>s
+			</p>
+		</div>
+<% end %>
